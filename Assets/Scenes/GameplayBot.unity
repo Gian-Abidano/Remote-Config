@@ -832,6 +832,10 @@ MonoBehaviour:
   netPlayerPrefab: {fileID: 8110054926284730867, guid: 4d6cbb590cc477944afd3ccf4a953cac, type: 3}
   Player1: {fileID: 1499403575}
   Player2: {fileID: 814896687}
+  defaultPlayerStats:
+    MaxHealth: 100
+    RestoreValue: 5
+    DamageValue: 10
   restoreValue: 5
   damageValue: 10
   gameOverPanel: {fileID: 1900265627}
@@ -1340,13 +1344,14 @@ GameObject:
   m_Component:
   - component: {fileID: 406802969}
   - component: {fileID: 406802968}
+  - component: {fileID: 406802970}
   m_Layer: 0
   m_Name: Bot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &406802968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1359,9 +1364,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 041b4b28a8460264e8b5b2fc33dd361c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  gameManager: {fileID: 0}
+  player: {fileID: 814896687}
+  gameManager: {fileID: 223401611}
+  stats:
+    Name: Default
+    ChoosingInterval: 0.5
+    MaxHealth: 100
+    RestoreValue: 5
+    DamageValue: 10
   choosingInterval: 0.5
+  IsReady: 0
 --- !u!4 &406802969
 Transform:
   m_ObjectHideFlags: 0
@@ -1377,6 +1389,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &406802970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406802967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e83fe26efd2e734ab8a28180319a269, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bot: {fileID: 406802968}
+  selectedDifficulty: 2
+  botDifficulties:
+  - Name: Easy
+    ChoosingInterval: 1
+    MaxHealth: 50
+    RestoreValue: 0
+    DamageValue: 5
+  - Name: Normal
+    ChoosingInterval: 0.2
+    MaxHealth: 100
+    RestoreValue: 5
+    DamageValue: 10
+  - Name: Hard
+    ChoosingInterval: 0.1
+    MaxHealth: 150
+    RestoreValue: 10
+    DamageValue: 20
+  enableRemoteConfig: 1
+  difficultyKey: Difficulty
 --- !u!1 &471906645
 GameObject:
   m_ObjectHideFlags: 0
@@ -2071,7 +2115,11 @@ MonoBehaviour:
   healthText: {fileID: 1200253671}
   healthBar: {fileID: 191378236}
   health: 100
-  maxHealth: 100
+  IsReady: 0
+  stats:
+    MaxHealth: 100
+    RestoreValue: 5
+    DamageValue: 10
 --- !u!1 &820688187
 GameObject:
   m_ObjectHideFlags: 0
@@ -2283,6 +2331,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 841981644}
   m_CullTransparentMesh: 1
+--- !u!1 &859306965
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 859306967}
+  - component: {fileID: 859306966}
+  m_Layer: 0
+  m_Name: UGS
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &859306966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859306965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a315cca940c4a5f4cbbcd32d5460b7cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  environmentName: production
+--- !u!4 &859306967
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859306965}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 508.1847, y: 988.8381, z: 15.774412}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &903312841
 GameObject:
   m_ObjectHideFlags: 0
@@ -3901,7 +3994,11 @@ MonoBehaviour:
   healthText: {fileID: 1952598298}
   healthBar: {fileID: 1616470289}
   health: 100
-  maxHealth: 100
+  IsReady: 0
+  stats:
+    MaxHealth: 100
+    RestoreValue: 5
+    DamageValue: 10
 --- !u!1 &1528506847
 GameObject:
   m_ObjectHideFlags: 0
